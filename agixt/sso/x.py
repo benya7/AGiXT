@@ -67,7 +67,7 @@ class XSSO:
         Raises:
             HTTPException: If the API request or data processing fails
         """
-        uri = "https://api.x.com/2/users/me?user.fields=name,username,profile_image_url,confirmed_email"
+        uri = "https://api.twitter.com/2/users/me?user.fields=name,username,profile_image_url,confirmed_email"
         
         # Configure logging
         logging.basicConfig(level=logging.INFO)
@@ -75,10 +75,12 @@ class XSSO:
         
         try:
             # Initial API request
+            print('Calling to /users/me')
+            print(self.access_token)
             response = requests.get(
                 uri,
                 headers={"Authorization": f"Bearer {self.access_token}"},
-                timeout=10  # Add timeout to prevent hanging
+                timeout=30  # Add timeout to prevent hanging
             )
             
             # Handle authentication failure
