@@ -38,7 +38,9 @@ class XSSO:
         self.refresh_token = refresh_token
         self.client_id = getenv("X_CLIENT_ID")
         self.client_secret = getenv("X_CLIENT_SECRET")
-        self.user_info = self.get_user_info()
+        self.user_info = None
+        if self.access_token:
+            self.user_info = self.get_user_info()
 
     def get_new_token(self):
         response = requests.post(
